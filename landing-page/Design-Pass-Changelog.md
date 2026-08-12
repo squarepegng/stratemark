@@ -411,3 +411,55 @@ are removed; `img/people/` deleted. The editorial numbered feature list stays. T
 ($0 / ~3 min / BYOK) moved into the sticky left column of the features section, and the log panel
 head returned to a single column. The page's only imagery is now the product itself: the deck
 carousel, the company logos, and the dithered ink surfaces.
+
+---
+
+## Addendum — 12 Aug, v2: full repositioning ("market intelligence, not decks")
+
+Complete rebuild against a new product brief. The story is no longer "cards/decks" — the deck is
+an output; the product is market intelligence. New promise: **Understand any market. Find what
+matters.**
+
+### Structure (5 sections + nav + footer)
+
+1. **Hero** — eyebrow "AI Market Intelligence", editorial two-line headline, two CTAs, and the
+   product itself as the centerpiece: a live-feeling workspace for the **AI Customer Support
+   Market** (typed query, pulse strip, 5 company objects with momentum signals, 4 trend
+   indicators with bars, one highlighted opportunity). Populates in stages on load.
+2. **Problem** — "Market research is everywhere. / Understanding the market isn't." Scattered
+   source chips flow into one market model.
+3. **How it works** — three alternating steps: Research (query field), Understand (structure
+   map: companies/products/categories/trends/customers/signals), Discover (opportunity insight).
+4. **Ask the market** (dark) — a scripted conversation that plays on scroll; the market objects
+   in a side panel light up in sync with each answer. Explicitly not a generic chatbot: answers
+   carry signal/source citations.
+5. **Act** — Research → Insights → Strategy → Presentation pipeline. The word "deck" appears
+   exactly once, as an output: "Turn your research into a strategy deck when you're ready."
+
+Plus a minimal final CTA ("Know the market. See what's next.") and a one-row footer.
+
+### Removed relative to the previous site
+
+Pricing section, FAQ, tier strip, logo wall, deck carousel, BYOK messaging, dithered dark hero.
+The deck-led page is preserved at the repo as of commit 75c7319 and locally as
+`prev-index-decks.html` in the thread workspace. Pricing/FAQ content still exists in the legal
+pages and can return as a secondary page if needed.
+
+### Design system
+
+Warm paper (#FAF8F5), deep charcoal (#1A1A17), one teal accent (#0F766E). No gradients as
+decoration, no glows, no glassmorphism. Parkinsans display + Google Sans Flex text +
+JetBrains Mono for data. Different market objects get different treatments: company rows,
+trend bars, highlighted opportunity insights, conversational AI, mono citations.
+
+### Verified
+
+21st review --strict 0/0/0 · contrast 174 nodes 0 failures · no horizontal overflow 320→1920 ·
+no-JS fully readable (all content static) · reduced-motion: all animation stilled ·
+animations verified in a real browser (typing, staged population, synced conversation).
+
+### Note for marketing
+
+The fact-checked Frontier AI figures and the verified/estimated/unknown vocabulary are not on
+this page — the new brief centres the workflow, not the data honesty claim. If that trust story
+should return, it fits naturally as a second row in the Problem section or a dedicated page.
