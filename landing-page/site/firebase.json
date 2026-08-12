@@ -1,0 +1,12 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": ["firebase.json", "**/.*", "DEPLOY.md", "SWAP-POINTS.md", "*.zip"],
+    "headers": [
+      {
+        "source": "**/*.@(jpg|svg|png)",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+      }
+    ]
+  }
+}

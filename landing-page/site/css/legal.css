@@ -1,0 +1,158 @@
+/* ==========================================================================
+   STRATEMARK — legal & contact pages
+   Shared by privacy.html, terms.html, refunds.html, contact.html.
+   Same tokens as the landing page: change a value here and on index.html
+   together. Documents read best on a narrow measure, so the scale is smaller.
+   ========================================================================== */
+
+:root{
+  --canvas:#F4F8F7;
+  --surface:#FFFFFF;
+  --surface-2:#F7FAF9;
+  --surface-3:#EDF4F2;
+  --border:#DCE8E5;
+  --border-strong:#C4D8D3;
+
+  --text:#171A19;
+  --text-muted:#5C6664;
+
+  --brand:#0F766E;
+  --brand-deep:#0B5F58;
+  --brand-wash:rgba(15,118,110,.07);
+
+  --flag-bg:#FFFBEB;
+  --flag-line:#E8C877;
+  --flag-text:#6B4E09;
+
+  --s-1:4px;  --s-2:8px;  --s-3:12px; --s-4:16px; --s-5:20px;
+  --s-6:24px; --s-8:32px; --s-10:40px; --s-12:48px; --s-16:64px;
+  --gutter:clamp(20px,4vw,32px);
+
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+  --shadow-md:0 1px 2px rgba(17,24,22,.04), 0 10px 24px -16px rgba(17,24,22,.18);
+  --ease:cubic-bezier(.2,.7,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--canvas);
+  color:var(--text);
+  font-family:"Google Sans Flex",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  font-size:15.5px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{
+  font-family:Parkinsans,"Google Sans Flex",sans-serif;
+  font-weight:600;letter-spacing:-.02em;line-height:1.2;margin:0;
+}
+p,li{margin:0}
+img,svg{display:block;max-width:100%}
+a{color:var(--brand-deep);text-decoration:underline;text-underline-offset:2px}
+a:hover{color:var(--brand)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:var(--r-sm)}
+
+.skip{
+  position:absolute;left:var(--s-4);top:-100px;z-index:200;
+  background:var(--text);color:#fff;padding:var(--s-3) var(--s-5);
+  border-radius:var(--r-md);font-weight:600;font-size:13.5px;text-decoration:none;
+  transition:top .18s var(--ease);
+}
+.skip:focus{top:var(--s-4)}
+
+/* ------------------------------------------------------------------ nav -- */
+.nav{
+  position:sticky;top:0;z-index:10;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:saturate(1.6) blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-in{
+  max-width:860px;margin-inline:auto;padding:var(--s-3) var(--gutter);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s-4);flex-wrap:wrap;
+}
+.logo{
+  display:flex;align-items:center;gap:var(--s-3);
+  font-family:Parkinsans,sans-serif;font-weight:700;font-size:16px;
+  color:var(--text);text-decoration:none;letter-spacing:-.015em;
+}
+.logo-mark{width:28px;height:28px;flex:none}
+.nav-links{display:flex;gap:var(--s-5);flex-wrap:wrap;font-size:13.5px}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-weight:500}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--brand-deep);font-weight:600}
+
+/* ----------------------------------------------------------------- page -- */
+main{max-width:860px;margin-inline:auto;padding:var(--s-12) var(--gutter) var(--s-16)}
+.eyebrow{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:var(--s-4);
+}
+h1{font-size:clamp(28px,4vw,40px);margin-bottom:var(--s-2)}
+.meta{font-size:13.5px;color:var(--text-muted);margin-bottom:var(--s-8)}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:clamp(24px,4vw,40px);
+  box-shadow:var(--shadow-md);
+}
+.card h2{
+  font-size:20px;margin:var(--s-10) 0 var(--s-3);
+  padding-top:var(--s-6);border-top:1px solid var(--border);
+}
+.card h2:first-of-type{margin-top:0;padding-top:0;border-top:0}
+.card h3{font-size:16.5px;margin:var(--s-6) 0 var(--s-2)}
+.card p{margin:var(--s-3) 0;max-width:70ch}
+.card ul,.card ol{margin:var(--s-3) 0 var(--s-5);padding-left:1.25em;max-width:70ch}
+.card li{margin:var(--s-2) 0}
+.card li::marker{color:var(--brand)}
+strong{color:var(--text);font-weight:600}
+
+/* a field still waiting on a real value */
+.ph{
+  display:inline-block;
+  background:var(--flag-bg);border:1px dashed var(--flag-line);
+  color:var(--flag-text);
+  border-radius:var(--r-sm);padding:1px 8px;
+  font-size:13px;font-weight:500;
+}
+
+/* the "still to fill" banner at the top of a draft */
+.todo{
+  background:var(--flag-bg);border:1px solid var(--flag-line);
+  color:var(--flag-text);
+  border-radius:var(--r-md);padding:var(--s-4) var(--s-5);
+  margin-bottom:var(--s-8);font-size:14px;line-height:1.55;
+}
+.todo strong{color:var(--flag-text)}
+
+/* --------------------------------------------------------------- footer -- */
+.foot{
+  max-width:860px;margin-inline:auto;
+  padding:var(--s-8) var(--gutter) var(--s-12);
+  display:flex;flex-wrap:wrap;gap:var(--s-3) var(--s-5);
+  justify-content:space-between;align-items:center;
+  font-size:13px;color:var(--text-muted);
+}
+.foot a{color:var(--text-muted);text-decoration:none}
+.foot a:hover{color:var(--text);text-decoration:underline}
+.back{
+  display:inline-flex;align-items:center;gap:var(--s-2);
+  font-size:13.5px;font-weight:600;color:var(--text);text-decoration:none;
+  border:1px solid var(--border-strong);background:var(--surface);
+  border-radius:var(--r-pill);padding:9px 16px;
+  transition:background .15s var(--ease),border-color .15s var(--ease);
+}
+.back:hover{background:var(--surface-2);border-color:var(--brand);color:var(--brand-deep)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.001ms !important;animation-duration:.001ms !important}
+}
+@media print{
+  .nav,.skip,.back{display:none}
+  body{background:#fff}
+  .card{box-shadow:none;border:0;padding:0}
+}

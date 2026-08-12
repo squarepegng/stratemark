@@ -1,0 +1,187 @@
+{
+  "version": 1,
+  "project": {
+    "name": "Stratemark marketing site",
+    "productType": "saas-landing-page",
+    "stack": [
+      "html",
+      "vanilla-css",
+      "vanilla-js"
+    ],
+    "notes": "Static single-file landing page plus four legal pages. No build step; opens by double-click. Marketing only — the product app lives elsewhere."
+  },
+  "sources": {
+    "tokens": [
+      "index.html (:root block)",
+      "css/legal.css (:root block)"
+    ],
+    "components": [
+      "index.html — .mcard, .plan, .step, .legend, .tier, .faq"
+    ],
+    "assets": [
+      "img/stratemark-mark.svg",
+      "img/logos2/*.png"
+    ],
+    "instructions": [
+      "../../01-READ-ME-FIRST/Design-Pass-Changelog.md",
+      "SWAP-POINTS.md"
+    ]
+  },
+  "design": {
+    "colorMode": "light-only",
+    "colors": {
+      "canvas": "#F4F8F7",
+      "surface": "#FFFFFF",
+      "surface2": "#F7FAF9",
+      "surface3": "#EDF4F2",
+      "border": "#DCE8E5",
+      "borderStrong": "#C4D8D3",
+      "text": "#171A19",
+      "textMuted": "#5C6664",
+      "brand": "#0F766E",
+      "brandDeep": "#0B5F58",
+      "brandBright": "#1CDCCD",
+      "confidence": {
+        "verified": {
+          "dot": "#16A36A",
+          "text": "#0E7A50"
+        },
+        "estimated": {
+          "dot": "#D99A25",
+          "text": "#8A6410"
+        },
+        "unknown": {
+          "dot": "#A3ACA9",
+          "text": "#5C6664"
+        }
+      }
+    },
+    "typography": {
+      "display": "Parkinsans",
+      "ui": "Google Sans Flex",
+      "mono": "JetBrains Mono",
+      "baseSize": "15px",
+      "scaleRatio": 1.25,
+      "steps": {
+        "mono": "11px",
+        "xs": "12px",
+        "sm": "13.5px",
+        "base": "15px",
+        "md": "16.5px",
+        "lg": "clamp(17px,1.15vw,19px)",
+        "h3": "clamp(19px,1.4vw,22px)",
+        "h2": "clamp(30px,3.2vw,42px)",
+        "h2-lg": "clamp(34px,3.8vw,50px)",
+        "h1": "clamp(38px,4.4vw,62px)",
+        "stat": "clamp(32px,3.4vw,46px)"
+      }
+    },
+    "spacing": {
+      "base": "4px",
+      "scale": {
+        "1": "4px",
+        "2": "8px",
+        "3": "12px",
+        "4": "16px",
+        "5": "20px",
+        "6": "24px",
+        "8": "32px",
+        "10": "40px",
+        "12": "48px",
+        "16": "64px",
+        "20": "80px",
+        "24": "96px"
+      },
+      "sectionY": "clamp(56px,6vw,88px)",
+      "gutter": "clamp(20px,4vw,32px)",
+      "measure": "64ch"
+    },
+    "radius": {
+      "sm": "8px",
+      "md": "12px",
+      "lg": "16px",
+      "xl": "20px",
+      "pill": "999px"
+    },
+    "shadows": {
+      "sm": "0 1px 2px rgba(17,24,22,.05)",
+      "md": "0 1px 2px rgba(17,24,22,.04), 0 10px 24px -16px rgba(17,24,22,.18)",
+      "lg": "0 1px 2px rgba(17,24,22,.04), 0 28px 56px -32px rgba(17,24,22,.22)"
+    },
+    "motion": {
+      "easing": "cubic-bezier(.2,.7,.3,1)",
+      "durations": "150–300ms",
+      "reducedMotion": "honoured — marquee and all transitions disabled"
+    },
+    "density": "comfortable"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": [
+      "native <button>, <details>, <input type=range> — no UI library"
+    ],
+    "patterns": [
+      {
+        "name": "mcard",
+        "what": "company metric card: logo, name, category, score ring, one-liner, HQ, 3x2 metric grid with confidence labels, tier footer"
+      },
+      {
+        "name": "deck rail",
+        "what": "horizontal scroll-snap carousel; arrows disable at ends, edge fade, keyboard arrows/Home/End, contain:paint"
+      },
+      {
+        "name": "plan",
+        "what": "pricing card; featured variant uses brand ring not a colour fill"
+      },
+      {
+        "name": "step",
+        "what": "text-led numbered card with a ghost numeral via ::after"
+      },
+      {
+        "name": "tier",
+        "what": "toggle button strip driven by aria-pressed, feeding an aria-live detail panel"
+      }
+    ]
+  },
+  "constraints": {
+    "must": [
+      "All text >=4.5:1 (verified across 466 nodes, 0 failures)",
+      "Zero !important — one stylesheet, tokens are the only source of truth",
+      "Every colour/space/size value comes from a token, never a raw literal in a component",
+      "Page must stay readable with JavaScript disabled; reveals are opt-in via the .js class",
+      "No horizontal overflow at any width — fix leaks at source, never mask with overflow-x:hidden",
+      "GitHub URL is real (github.com/squarepegng/stratemark); keep the yellow legal chips intact until Tobi fills them",
+      "Confidence vocabulary is fixed: verified / estimated / unknown",
+      "Images need width+height and loading=lazy"
+    ],
+    "avoid": [
+      "App/product screenshots — removed at the client's request 12 Aug 2026",
+      "Fake browser or macOS window chrome around imagery",
+      "Gradient text that terminates in a low-contrast grey",
+      "CDN runtime dependencies (GSAP was removed)",
+      "Vivid #16A36A as small text — use the darkened text variant, vivid only for dots and rings",
+      "Emoji as icons"
+    ]
+  },
+  "decisions": [
+    {
+      "date": "2026-08-12",
+      "decision": "Rebuilt on one token-based stylesheet, replacing three stacked CSS generations and 89 !important rules."
+    },
+    {
+      "date": "2026-08-12",
+      "decision": "Light-only palette matching the product UI. No dark mode yet."
+    },
+    {
+      "date": "2026-08-12",
+      "decision": "Removed all app screenshots; Trust and How sections are text-led."
+    }
+  ],
+  "evidence": [
+    {
+      "source": "01-READ-ME-FIRST/Design-Pass-Changelog.md",
+      "what": "full audit, bug list and rationale for every change"
+    }
+  ],
+  "generatedAt": "2026-08-12T20:00:31.390707Z"
+}
