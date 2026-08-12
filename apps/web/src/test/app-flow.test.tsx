@@ -36,17 +36,14 @@ describe('end-to-end deck flow (markets → deck → 2-level split → card → 
   it('navigates the full journey against the mock repository', { timeout: 20000 }, async () => {
     const { user } = renderApp();
 
-    // Navigate to deck history first (home is now the New Deck page).
-    const historyLink = await screen.findByRole('link', { name: /deck history/i }, FIND);
-    await user.click(historyLink);
-
-    // Deck history → open the sample market's deck.
-    const marketBtn = await screen.findByText(
-      'Christian Apparel Companies — California',
-      undefined,
+    // Recent decks now live inline in the left sidebar — open the sample
+    // market's deck straight from there (no separate history page).
+    const deckLink = await screen.findByRole(
+      'link',
+      { name: 'Christian Apparel Companies — California' },
       FIND,
     );
-    await user.click(marketBtn);
+    await user.click(deckLink);
 
     // Level 0 — full deck with the persistent card-type nav. Filtering happens
     // The type nav should be visible with company cards shown by default.
