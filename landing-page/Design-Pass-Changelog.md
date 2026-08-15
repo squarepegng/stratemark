@@ -600,3 +600,32 @@ dark-era colour on the evidence citation note survived the mode switch at 1.41:1
 Verified: 21st review --strict 0/0/0 · contrast 605 nodes 0 failures · no overflow 320→1920 ·
 no-JS readable · float chips, big numbers and hover states confirmed in a real browser.
 Photography ≈ one section (~10% of the page), product UI still dominant.
+
+---
+
+## Addendum — 15 Aug, V6: polish pass (client design review)
+
+Client feedback addressed:
+
+1. **Big section icons removed** from Metrics, Live Intel and Report — headlines carry the
+   sections; the big-numbers row stays the Metrics hero.
+2. **Human section height fixed.** Root cause was real: this build had no `img{height:auto}`
+   reset, so the photo's `height="1366"` attribute overrode the CSS `aspect-ratio` and the
+   image rendered full-height (1366px). Reset added; photo now renders 5:4 (~414px) with the
+   subject-focused crop. Global reset also verified against every other image on the page.
+3. **Section audit — three cut:** How-it-works (redundant with the hero demo, which already
+   shows question→research→deck), Beyond-the-numbers lens boxes (ghost placeholders; the
+   dashboard tabs already name these), Use-cases (repeated earlier screenshots). Nav and
+   footer rebuilt: Product / Metrics / Who it's for / Pricing.
+4. **More humanity, where it earns its place** — two new commissioned editorial photographs:
+   - *Who it's for* (replaces use-cases): a strategy pair comparing printed research (teal
+     folder on the table) beside three role cards — Founders / Investors / Strategy teams —
+     each with a real product chip.
+   - *Report*: a reader with the bound, teal-covered report by a window — the export made
+     tangible — composed asymmetrically beside the report window.
+5. Fonts unchanged (Parkinsans / Google Sans Flex / JetBrains Mono).
+
+Page is now: Hero+demo · Problem · Deck · Company intel · METRICS (dark) · Evidence ·
+Live Intel · Team · Compare · Ask · Human (peach) · Report+photo · Who it's for · Why ·
+Pricing · FAQ · Final. Verified: 21st review 0/0/0 · contrast 545 nodes 0 failures ·
+no overflow 320→1920 · no-JS readable.
