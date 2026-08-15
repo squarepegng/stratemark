@@ -702,3 +702,27 @@ Verified: tag balance clean · CSS braces/vars clean · `21st review --strict` 0
 0 warnings / 0 info · contrast 402 text nodes, 0 failures (checker now composites
 semi-transparent backgrounds correctly) · no horizontal overflow 320–1920px ·
 all images load · no-JS render intact (9,500 chars).
+
+---
+
+## V10 addendum — 15 August 2026 ("Why Stratemark" illustration)
+
+The Why section's two mock-UI panels (fake "General AI" chat ghost-bars vs a fake
+Stratemark mini-deck) are gone. In their place: a single commissioned-style editorial
+illustration — a speech bubble disintegrating into drifting fragments on the left, a
+thin line carrying them right, where they settle into tidy shelves of organized
+records. Bayer-dither shading ties it to the hero texture; palette is strictly the
+brand's (deep teal / teal / mint / one coral accent / peach).
+
+Details:
+- Illustration background snapped pixel-exact to the page token (#F8F9F6), so it sits
+  borderless and seamless on the canvas — no frame, no window chrome.
+- Generation smudge artifacts removed (low-chroma near-background pixels normalized).
+- Shipped as `img/illus/why.webp` — 1600×679, 73 KB.
+- Two quiet captions anchor the halves: "General AI — an answer that scrolls away." /
+  "Stratemark — a market that stays structured." (stacks below 700px).
+- Dead CSS removed with the panels: .vs grid, .vs-col, .vs-list, .vs-k, .vs-visual,
+  .ghost-msg; responsive rule updated.
+
+Verified: tag balance clean · 21st review --strict 0/0/0 · contrast 392 nodes,
+0 failures · no overflow 320–1920px · all images load · no-JS render intact.
