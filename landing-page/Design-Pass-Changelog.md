@@ -535,3 +535,37 @@ fact-checking, live intel and report export. FAQ gains the report/export questio
 
 Verified: 21st review --strict 0/0/0 · contrast 542 nodes 0 failures · no overflow 320→1920 ·
 no-JS readable (12.3K chars) · metric cells, org chart, intel rows all reveal progressively.
+
+---
+
+## Addendum — 15 Aug, V4: product-first discipline pass
+
+Implemented the V4 brief on top of the V2 structure. This was a subtraction pass, not an
+addition pass.
+
+**Text cut roughly in half.** Every section is now one headline + one supporting sentence.
+Removed the deck section's card-type paragraph and collapsed the Why comparison from two
+5-item lists into the brief's 4-row contrast (Answer→Intelligence workspace, Conversation→
+Structured market, Information→Company intelligence, Research→Research+metrics+signals+
+comparison+reporting).
+
+**V4 headlines:** "Start with a market question." / "Go deeper than the company card." /
+"See the numbers behind the business." / "Know what changed." / "Understand the company
+beyond the numbers." / "Your next question starts where the last one ended." / "Turn research
+into a report." / final CTA "Start with a question."
+
+**Logo lockup fixed** per brief: mark 28→34px, gap 10→7px, wordmark baseline-aligned.
+
+**Purposeful hover states** (150–300ms): company cards reveal an "Open company →" affordance;
+metric cells emphasize their chart line; Live Intel rows reveal timestamps and tint; comparison
+rows highlight; report window raises its export buttons. No bouncing, no glow.
+
+**Two real bugs found and fixed during this pass:**
+1. An earlier patch transaction had died mid-write, silently dropping the entire Report section
+   markup — the pushed 284bb89 commit shipped its CSS but no section. Restored and verified
+   ("Export .pptx / PDF / .md" all render).
+2. The nav's GitHub ghost button kept white text when the nav flipped to its light stuck state —
+   white on white. Now restyles with the stuck nav.
+
+Verified: 21st review --strict 0/0/0 · contrast 582 nodes 0 failures · no overflow 320→1920 ·
+no-JS readable · hover affordances confirmed in a real browser.
