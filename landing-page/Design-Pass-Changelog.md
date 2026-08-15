@@ -463,3 +463,49 @@ animations verified in a real browser (typing, staged population, synced convers
 The fact-checked Frontier AI figures and the verified/estimated/unknown vocabulary are not on
 this page — the new brief centres the workflow, not the data honesty claim. If that trust story
 should return, it fits naturally as a second row in the Problem section or a dedicated page.
+
+---
+
+## Addendum — 15 Aug: full redesign against the "explain the product" brief
+
+Complete rebuild per the redesign prompt. Governing rule: **the repository is the source of truth.**
+Every product visual on the page is reconstructed from `apps/web` — nothing is invented.
+
+### Sourced from the codebase
+
+| Marketing element | Source |
+|---|---|
+| Hero demo (prompt → phases → deck) | `features/deck/NewDeckPage.tsx` — phases, glow-border, input pill, region picker |
+| Company card anatomy | `features/card/GameCard.tsx` — 44px logo tile, industry chip, 40px score ring, 2-line one-liner, HQ pin, metric grid, tier badge |
+| Tier names T1–T8 | `packages/contracts/src/enums.ts` `TIER_LABELS` |
+| Card types (Infrastructure, Distribution, Culture, Vice, Insight, Barrier to Entry) | `CARD_TYPE_LABELS` |
+| Dashboard tabs (Overview, Metrics, Live Intel, Team & Org Chart, Products & Roadmap, Mission & Governance, History) | `DASHBOARD_TAB_LABELS` |
+| Compare flow (select cards → "Compare these…") | `features/deck/DeckPage.tsx` compare mode |
+| "Split into 8 tiers" market map | `DeckPage.tsx` Level-2 tier decks |
+| Grounding line ("deck research + fresh Google Search — never model memory") | `features/deepdive/DeepDive.tsx` docstring |
+| Verified / Estimated / Unverified badges | `features/factcheck/FactCheck.tsx` |
+| Sample companies & metrics | `src/sample/frontier-snapshot.json` + the Aug-2026 fact-check |
+| Palette | `src/index.css` light mode, verbatim |
+
+### New copy (slogans out, product explanation in)
+
+"Any market. As a deck of cards." → **"Research any market. Get the landscape in a deck."**
+"Glass box > black box." → **"See the research behind the intelligence."**
+"Maturity you can score." → **"Understand where companies stand."**
+Plus: "Market research is scattered." / "Start with a question. End with a market map." /
+"A deck is your market, organized." / "Stop switching between tabs." / "Keep researching the
+same market." / "Chat gives you an answer. Stratemark gives you a market you can work with."
+
+### Structure (15 sections)
+
+Hero+demo · Problem (fragments→deck) · How it works · What is a deck (annotated card) ·
+Company intelligence (dashboard) · Research transparency (dark) · Compare · Ask · Maturity ·
+Market map (split into 8 tiers) · Use cases (4 product mini-scenarios) · Why vs general AI ·
+Pricing (free-first, easy install secondary) · FAQ (10 questions) · Final CTA (dark).
+
+Dark is reserved for hero, research engine and final CTA. Dither assets retained.
+
+### Verified
+
+21st review --strict 0/0/0 · contrast 447 nodes 0 failures · no overflow 320→1920 ·
+no-JS fully readable · tier/slider/animations pass. Prior version preserved in git history.
