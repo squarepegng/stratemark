@@ -629,3 +629,26 @@ Page is now: Hero+demo · Problem · Deck · Company intel · METRICS (dark) · 
 Live Intel · Team · Compare · Ask · Human (peach) · Report+photo · Who it's for · Why ·
 Pricing · FAQ · Final. Verified: 21st review 0/0/0 · contrast 545 nodes 0 failures ·
 no overflow 320→1920 · no-JS readable.
+
+---
+
+## Addendum — 15 Aug, V7: client review round 2
+
+1. **Clipped input pill fixed at the root.** The demo window overhung the hero's
+   `overflow:hidden` boundary (a decorative seam trick from an earlier version), so the
+   input's control bar was cut off. Overhang removed; and per the client's suggestion the
+   pill now stays fully visible during research, then **collapses to a compact
+   "Describe a market… +" state** once the deck lands (no-JS keeps the full pill).
+2. **"Your market, organized" removed** (annotated-card anatomy). The hero deck cards and
+   company-intelligence dashboard carry that information. Nav "Product" now points at
+   Company intelligence.
+3. **Capability index added** — a quiet six-item strip (Live research · Company profiles ·
+   Metrics · Live Intel · Compare & Ask · Reports) that anchors to each section: the missing
+   "features at a glance" without feature-card sprawl.
+4. **Team & Org gains a photograph** — the evening two-person debate shot beside the org
+   chart, so the section shows humans as well as structure.
+5. **Tier strip removed, market map kept** — two sections both explained tiers; the map does
+   it with real companies. The T1/T8 naming moved into the map's lede.
+
+Verified: 21st review 0/0/0 · contrast 487 nodes 0 failures · no overflow 320→1920 ·
+pill clip verified fixed programmatically (pill bottom < window bottom, done-state bar 0px).
