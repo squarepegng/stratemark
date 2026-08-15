@@ -673,3 +673,32 @@ pill clip verified fixed programmatically (pill bottom < window bottom, done-sta
 
 Verified: 21st review 0/0/0 · contrast 476 nodes 0 failures · no overflow 320→1440 ·
 no-JS readable.
+
+---
+
+## V9 addendum — 15 August 2026 (detail pass: icons, dots, chrome, copyright)
+
+Five requests from review of V8:
+
+1. **Layers/stack icon removed everywhere.** It appeared twice — in the Compare bar
+   ("3 selected — 'Compare these…'") and the market-map pill ("Split into 8 tiers").
+   Both pills keep their text; the glyph is gone.
+2. **"● New deck" status chip removed** from the hero demo window header, CSS and markup.
+   The header now carries only the Stratemark brand mark.
+3. **Green status dots removed site-wide.** One sweep, eleven sources: pane-label dots,
+   tier-badge dots, Live Intel row dots, dashboard signal-list dots, the analyst-photo
+   float-chip dot, the three problem-section chip dots, and the confidence-badge
+   (verified/estimated/unknown) dots. Labels keep their text and semantic colors —
+   only the dot glyphs are gone. The Live Intel grid dropped its reserved dot column.
+4. **Window chrome dots are now macOS traffic lights** (#FF5F57 / #FEBC2E / #28C840)
+   on all three product windows: company dashboard, comparison, and report.
+5. **Copyright line corrected** to "© 2026 Squarepeg. Stratemark." — in the site footer
+   and all four legal-page footers.
+
+Also fixed while in there: one stray `</div>` left over from the V8 Team & Org rebuild
+(browsers ignored it; the parser didn't).
+
+Verified: tag balance clean · CSS braces/vars clean · `21st review --strict` 0 errors /
+0 warnings / 0 info · contrast 402 text nodes, 0 failures (checker now composites
+semi-transparent backgrounds correctly) · no horizontal overflow 320–1920px ·
+all images load · no-JS render intact (9,500 chars).
