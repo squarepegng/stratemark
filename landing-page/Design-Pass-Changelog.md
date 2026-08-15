@@ -509,3 +509,29 @@ Dark is reserved for hero, research engine and final CTA. Dither assets retained
 
 21st review --strict 0/0/0 · contrast 447 nodes 0 failures · no overflow 320→1920 ·
 no-JS fully readable · tier/slider/animations pass. Prior version preserved in git history.
+
+---
+
+## Addendum — 15 Aug, V2: full product depth
+
+Implemented the V2 rebuild brief: the site now tells the complete workflow —
+**Question → Research → Market Landscape → Company Intelligence → Metrics → Live Intel →
+Team → Product/History → Comparison → Ask → Report.**
+
+New sections, each verified against the codebase before being built:
+
+| Section | Repo evidence |
+|---|---|
+| **Metrics** (major pillar) — ARR / Employees / Valuation stat cards with Estimated/Verified badges, Source links and Fact-check buttons; Revenue trend and Users trend area charts; Churn (red); Cap table donut | `MetricsTab.tsx` (TrendArea, churn series, capTable slices, FactCheck import), `metricViz.tsx` |
+| **Live Intel** — publisher-linked development rows | `LiveIntelTab.tsx` (`IntelRow`, `publisherOf`) |
+| **Team & Org Chart** — layered org chart | `TeamOrgTab.tsx` (react-flow node/edge layout) |
+| **Beyond the numbers** — Mission & Governance / Products & Roadmap / History / Live Landing Page lenses | `DASHBOARD_TAB_LABELS` |
+| **Report** — title, "Generated · 34 sources", executive summary, company table, **Export .pptx / PDF / .md** | `ReportViewerPage.tsx` + `pptx.ts` (all three export paths real) |
+
+Copy updated per brief: hero "Research any market. Understand every company.", problem gains
+"Your intelligence shouldn't be.", deck closes with "The deck is the map. Every company can
+become an investigation.", compare/ask/final retitled, Why lists now include metrics,
+fact-checking, live intel and report export. FAQ gains the report/export question.
+
+Verified: 21st review --strict 0/0/0 · contrast 542 nodes 0 failures · no overflow 320→1920 ·
+no-JS readable (12.3K chars) · metric cells, org chart, intel rows all reveal progressively.

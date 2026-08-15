@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Stratemark — Research any market. Get the landscape in a deck.</title>
+<title>Stratemark — Research any market. Understand every company.</title>
 <meta name="description" content="Describe what you want to understand. Stratemark researches the market, organizes the companies, and gives you a structured deck you can explore, compare, and investigate." />
 <meta name="theme-color" content="#0C0E0D" />
-<meta property="og:title" content="Stratemark — Research any market. Get the landscape in a deck." />
+<meta property="og:title" content="Stratemark — Research any market. Understand every company." />
 <meta property="og:description" content="AI market research → structured company intelligence → comparison → ongoing research." />
 <meta property="og:type" content="website" />
 <link rel="icon" href="img/stratemark-mark.svg" type="image/svg+xml" />
@@ -279,6 +279,82 @@ table{border-collapse:collapse}
 .tierbadge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);border-radius:999px;padding:2px 9px;font-size:10.5px;font-weight:600}
 .tierbadge i{width:6px;height:6px;border-radius:50%;background:var(--primary);flex:none}
 
+/* ---------------------------------------------------------- metrics viz -- */
+.metrics-grid{margin-top:var(--s12);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
+.mcell{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4)}
+.mcell .head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mcell h4{font-size:12.5px;font-family:inherit;font-weight:600;letter-spacing:0;color:var(--muted)}
+.mcell .big{margin-top:6px;font-family:Parkinsans,sans-serif;font-size:26px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.mcell .delta{font-family:"JetBrains Mono",monospace;font-size:10.5px}
+.mcell .delta.up{color:var(--positive-text)}
+.mcell .delta.down{color:#B3261E}
+.mcell .src{margin-top:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:10.5px;color:var(--muted)}
+.mcell .src a{color:var(--primary-deep);text-decoration:underline;text-underline-offset:2px}
+.factbtn{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);border-radius:999px;padding:2px 9px;font-size:10px;font-weight:600;color:var(--muted)}
+.factbtn svg{width:10px;height:10px}
+.mcell svg.chart{width:100%;height:64px;margin-top:8px;display:block}
+.donut-wrap{display:flex;align-items:center;gap:var(--s4);margin-top:6px}
+.donut-wrap svg{width:76px;height:76px;flex:none}
+.legendlist{display:grid;gap:5px;font-size:11px;color:var(--muted)}
+.legendlist i{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:6px;vertical-align:0}
+.mcell.wide{grid-column:span 2}
+.js .mcell{opacity:0;transform:translateY(10px)}
+.js .mcell.in{opacity:1;transform:none;transition:opacity .55s var(--ease),transform .55s var(--ease)}
+
+/* live intel rows */
+.intel{margin-top:var(--s12);max-width:820px;margin-inline:auto}
+.intel-row{
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--s4);align-items:baseline;
+  padding:var(--s4) var(--s2);border-bottom:1px solid var(--border);font-size:var(--t-base);
+}
+.intel-row:last-child{border-bottom:0}
+.intel-row .d{width:8px;height:8px;border-radius:50%;background:var(--positive);flex:none;transform:translateY(-1px)}
+.intel-row.warn .d{background:var(--neutral)}
+.intel-row b{font-weight:600}
+.intel-row .pub{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--primary-deep);white-space:nowrap}
+.intel-row .when{font-size:11px;color:var(--muted);white-space:nowrap}
+
+/* org chart */
+.org{margin-top:var(--s12);position:relative;max-width:760px;margin-inline:auto}
+.org-rows{display:grid;gap:var(--s8)}
+.org-row{display:flex;justify-content:center;gap:var(--s4);flex-wrap:wrap}
+.org-node{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:10px 16px;text-align:center;box-shadow:var(--sh-sm);min-width:130px;
+}
+.org-node b{display:block;font-size:13px;font-weight:600}
+.org-node span{display:block;font-size:10.5px;color:var(--muted)}
+.org-node.lead{border-color:var(--wash-line);box-shadow:0 0 0 3px var(--wash)}
+.org svg.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1}
+
+/* company lenses */
+.lenses{margin-top:var(--s12);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s4)}
+.lens{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4)}
+.lens .pane-label{margin-bottom:var(--s3)}
+.lens p{font-size:var(--t-xs);color:var(--muted);line-height:1.55}
+.lens .ln{height:5px;border-radius:99px;background:var(--surface2);margin-top:7px}
+.lens .ln.short{width:62%}
+.lens .rmrow{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);padding:3px 0}
+.lens .rmrow i{width:6px;height:6px;border-radius:50%;border:1.5px solid var(--primary);flex:none}
+.lens .rmrow.done i{background:var(--primary)}
+.lens .hyear{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--primary-deep);margin-right:7px}
+
+/* report */
+.report{max-width:920px;margin:var(--s12) auto 0}
+.report .win-bar{justify-content:space-between}
+.rep-actions{display:flex;gap:8px}
+.rep-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border2);border-radius:999px;padding:5px 13px;font-size:11.5px;font-weight:600;background:var(--surface)}
+.rep-btn.primary{background:var(--content);color:#fff;border-color:transparent}
+.rep-body{padding:var(--s6)}
+.rep-body h3{font-size:clamp(18px,1.8vw,24px)}
+.rep-meta{margin-top:4px;font-size:var(--t-xs);color:var(--muted)}
+.rep-sum{margin-top:var(--s4);padding:var(--s4);background:var(--surface2);border-radius:var(--r-md);font-size:var(--t-sm);color:var(--muted);line-height:1.6}
+.rep-sum b{color:var(--content)}
+.rep-table{width:100%;margin-top:var(--s5);font-size:var(--t-sm)}
+.rep-table th{text-align:left;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--border)}
+.rep-table td{padding:8px 10px;border-bottom:1px solid var(--surface2);font-variant-numeric:tabular-nums}
+.rep-table td:first-child{font-weight:600}
+
 /* -------------------------------------------------------------- sections -- */
 section{padding-block:var(--band)}
 .on-ink{position:relative;background:var(--ink);color:var(--on-ink);isolation:isolate}
@@ -540,6 +616,9 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
   .dash-body{grid-template-columns:1fr}
   .evidence,.compare-grid,.ask-grid,.vs{grid-template-columns:1fr}
   .tiers{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mcell.wide{grid-column:span 2}
+  .lenses{grid-template-columns:repeat(2,minmax(0,1fr))}
   .cases{grid-template-columns:1fr}
   .plans{grid-template-columns:1fr;max-width:520px}
   .faq{grid-template-columns:1fr;gap:0;max-width:640px}
@@ -552,13 +631,17 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
   .brand-word{font-size:15px}
   .hero-actions .btn{flex:1 1 100%}
   .tiers{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .metrics-grid{grid-template-columns:1fr}
+  .mcell.wide{grid-column:span 1}
+  .lenses{grid-template-columns:1fr}
+  .rep-actions{flex-wrap:wrap}
   .demo-body{padding:16px}
   .cmp-table th,.cmp-table td{padding:7px 8px;font-size:12px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
-  .js [data-r],.js .dpop,.js .frag,.js .chat .msg,.js .echecks .row,.js .chip-co{opacity:1;transform:none}
+  .js [data-r],.js .dpop,.js .frag,.js .chat .msg,.js .echecks .row,.js .chip-co,.js .mcell{opacity:1;transform:none}
 }
 @media print{
   .nav,.hero-actions,.final,.skip{display:none}
@@ -599,10 +682,11 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
   <span class="dissolve" aria-hidden="true"></span>
   <div class="wrap">
     <p class="kicker">AI market research</p>
-    <h1>Research any market. Get the landscape in a deck.</h1>
+    <h1>Research any market. Understand every company.</h1>
     <p class="lede">
-      Describe what you want to understand. Stratemark researches the market, organizes the
-      companies, and gives you a structured deck you can <strong>explore, compare, and investigate</strong>.
+      Give Stratemark a market to investigate. It researches the landscape, structures the
+      companies, surfaces the signals behind them, and gives you a workspace to
+      <strong>keep digging</strong>.
     </p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="https://hyperagent.com/s/60ZLHcH84aiLpI5gf5JFIA" target="_blank" rel="noopener noreferrer">Research a market</a>
@@ -703,7 +787,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
 <section style="padding-top:calc(var(--band) + var(--s20))">
   <div class="wrap">
     <p class="kicker" data-r>The problem</p>
-    <h2 class="h2" data-r>Market research is scattered.</h2>
+    <h2 class="h2" data-r>Market research is scattered. Your intelligence shouldn’t be.</h2>
     <p class="lede" data-r>
       Understanding a market means bouncing between search, company websites, LinkedIn, news,
       reports, spreadsheets and AI chats. The problem isn’t a lack of information — it’s that the
@@ -737,7 +821,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
 <section id="how" style="padding-top:0">
   <div class="wrap">
     <p class="kicker" data-r>How it works</p>
-    <h2 class="h2" data-r>Start with a question. End with a market map.</h2>
+    <h2 class="h2" data-r>Start with a question. Build the market.</h2>
     <div class="how-grid">
       <div class="how-step" data-r>
         <p class="step-n">01 — Describe</p>
@@ -791,7 +875,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
 <section id="deck" style="background:var(--surface);border-block:1px solid var(--border)">
   <div class="wrap">
     <p class="kicker" data-r>The deck</p>
-    <h2 class="h2" data-r>A deck is your market, organized.</h2>
+    <h2 class="h2" data-r>Your market, organized.</h2>
     <p class="lede" data-r>
       Every company becomes a structured profile with the information you need to understand it —
       financials, team, market share, maturity, and the signals behind them.
@@ -830,6 +914,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
       Beyond company profiles, a deck can hold <strong>Infrastructure</strong>, <strong>Distribution</strong>,
       <strong>Culture</strong>, <strong>Vice</strong>, <strong>Insight</strong> and <strong>Barrier to Entry</strong>
       cards — the market’s context, not just its logos.
+      <strong>The deck is the map. Every company can become an investigation.</strong>
     </p>
   </div>
 </section>
@@ -838,10 +923,11 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
 <section>
   <div class="wrap">
     <p class="kicker" data-r>Company intelligence</p>
-    <h2 class="h2" data-r>See the signals behind every company.</h2>
+    <h2 class="h2" data-r>Go from the market to the company.</h2>
     <p class="lede" data-r>
-      Open any company and Stratemark assembles a consistent picture — the same structure for a
-      three-person startup and a trillion-dollar incumbent, so they can actually be compared.
+      Every card in the deck is a doorway. Open a company and Stratemark assembles a full
+      intelligence profile — metrics, live intel, the team behind it, its products, its history —
+      in the same structure for every company, so they can actually be compared.
     </p>
     <div class="window dash" data-r>
       <div class="win-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> Anthropic — company dashboard</div>
@@ -850,6 +936,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
         <span class="dash-tab">Metrics</span>
         <span class="dash-tab">Live Intel</span>
         <span class="dash-tab">Team &amp; Org Chart</span>
+        <span class="dash-tab">Live Landing Page</span>
         <span class="dash-tab">Products &amp; Roadmap</span>
         <span class="dash-tab">Mission &amp; Governance</span>
         <span class="dash-tab">History</span>
@@ -875,11 +962,78 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
   </div>
 </section>
 
-<!-- ==================================== 06 · RESEARCH TRANSPARENCY (ink) === -->
+<!-- ===================================================== 06 · METRICS === -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker" data-r>Metrics</p>
+    <h2 class="h2" data-r>See the numbers behind the company.</h2>
+    <p class="lede" data-r>
+      Stratemark turns scattered company signals into structured metrics you can inspect,
+      compare and fact-check — each labelled <strong>verified</strong> or <strong>estimated</strong>,
+      with its source attached.
+    </p>
+    <div class="metrics-grid" id="metrics" aria-label="The Metrics tab: ARR, employees, revenue trend, users trend, churn and cap table for Anthropic.">
+      <div class="mcell">
+        <div class="head"><h4>ARR</h4><span class="conf conf-e">estimated</span></div>
+        <p class="big num">$47B</p>
+        <p class="src">Source: <a href="#metrics" aria-label="Source for ARR">reported run-rate</a> <span class="factbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Fact-check</span></p>
+      </div>
+      <div class="mcell">
+        <div class="head"><h4>Employees</h4><span class="conf conf-e">estimated</span></div>
+        <p class="big num">~5,000</p>
+        <p class="src">Source: <a href="#metrics" aria-label="Source for employees">hiring data</a> <span class="factbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Fact-check</span></p>
+      </div>
+      <div class="mcell">
+        <div class="head"><h4>Valuation</h4><span class="conf conf-v">verified</span></div>
+        <p class="big num">$965B</p>
+        <p class="src">Source: <a href="#metrics" aria-label="Source for valuation">Series H announcement</a> <span class="factbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Fact-check</span></p>
+      </div>
+      <div class="mcell wide">
+        <div class="head"><h4>Revenue trend</h4><span class="delta up num">▲ +34% YoY</span></div>
+        <svg class="chart" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 56 L50 50 L100 44 L150 34 L200 26 L250 16 L300 8 L300 64 L0 64 Z" fill="rgba(15,118,110,.12)"/>
+          <path d="M0 56 L50 50 L100 44 L150 34 L200 26 L250 16 L300 8" fill="none" stroke="#0F766E" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="mcell">
+        <div class="head"><h4>Users trend</h4><span class="delta up num">▲ rising</span></div>
+        <svg class="chart" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 58 L60 54 L120 46 L180 40 L240 24 L300 14 L300 64 L0 64 Z" fill="rgba(15,118,110,.12)"/>
+          <path d="M0 58 L60 54 L120 46 L180 40 L240 24 L300 14" fill="none" stroke="#0F766E" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="mcell">
+        <div class="head"><h4>Churn</h4><span class="delta down num">▼ 1.8%</span></div>
+        <svg class="chart" viewBox="0 0 300 64" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 22 L60 28 L120 26 L180 36 L240 42 L300 48 L300 64 L0 64 Z" fill="rgba(220,38,38,.10)"/>
+          <path d="M0 22 L60 28 L120 26 L180 36 L240 42 L300 48" fill="none" stroke="#DC2626" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="mcell wide">
+        <div class="head"><h4>Cap table</h4><span class="conf conf-e">estimated</span></div>
+        <div class="donut-wrap">
+          <svg viewBox="0 0 42 42" aria-hidden="true">
+            <circle cx="21" cy="21" r="15.9" fill="none" stroke="var(--surface2)" stroke-width="6"/>
+            <circle cx="21" cy="21" r="15.9" fill="none" stroke="#0F766E" stroke-width="6" stroke-dasharray="42 58" stroke-dashoffset="25"/>
+            <circle cx="21" cy="21" r="15.9" fill="none" stroke="#5EBFB5" stroke-width="6" stroke-dasharray="31 69" stroke-dashoffset="-17"/>
+            <circle cx="21" cy="21" r="15.9" fill="none" stroke="#D99A25" stroke-width="6" stroke-dasharray="17 83" stroke-dashoffset="-48"/>
+          </svg>
+          <ul class="legendlist">
+            <li><i style="background:#0F766E"></i>Founders &amp; employees · 42%</li>
+            <li><i style="background:#5EBFB5"></i>Institutional investors · 31%</li>
+            <li><i style="background:#D99A25"></i>Strategic partners · 17%</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================== 07 · RESEARCH TRANSPARENCY (ink) === -->
 <section class="on-ink" id="research">
   <div class="wrap">
     <p class="kicker" data-r>Research transparency</p>
-    <h2 class="h2" data-r>See the research behind the intelligence.</h2>
+    <h2 class="h2" data-r>Know where the intelligence comes from.</h2>
     <p class="lede" data-r>
       Stratemark doesn’t just give you an answer. It shows the research and evidence behind the
       companies, metrics and conclusions it surfaces — and when nothing credible exists, the gap
@@ -913,13 +1067,97 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
   </div>
 </section>
 
-<!-- ===================================================== 07 · COMPARE === -->
+<!-- ================================================== 08 · LIVE INTEL === -->
+<section style="background:var(--surface);border-block:1px solid var(--border)">
+  <div class="wrap">
+    <p class="kicker" data-r>Live intel</p>
+    <h2 class="h2" data-r>Keep researching after the deck is built.</h2>
+    <p class="lede" data-r>
+      Markets move. The Live Intel tab tracks what’s changing at each company — announcements,
+      signals and developments, each linked to its publisher.
+    </p>
+    <div class="intel" data-r aria-label="Live Intel: recent developments for Anthropic with publishers.">
+      <div class="intel-row"><span class="d" aria-hidden="true"></span><span><b>Series H announced</b> at a $965B valuation</span><span class="pub">press release</span></div>
+      <div class="intel-row"><span class="d" aria-hidden="true"></span><span><b>Enterprise adoption accelerating</b> in coding workflows</span><span class="pub">earnings call</span></div>
+      <div class="intel-row warn"><span class="d" aria-hidden="true"></span><span><b>Compute supply</b> named as a scaling constraint</span><span class="pub">interview</span></div>
+      <div class="intel-row"><span class="d" aria-hidden="true"></span><span><b>Fortune 500 pilots</b> expanding across regulated industries</span><span class="pub">industry press</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================== 09 · TEAM & ORG === -->
+<section>
+  <div class="wrap">
+    <p class="kicker" data-r>Team &amp; Org Chart</p>
+    <h2 class="h2" data-r>Understand the people behind the company.</h2>
+    <p class="lede" data-r>
+      Company intelligence includes the humans — leadership, teams and reporting structure,
+      assembled into an organization chart you can explore.
+    </p>
+    <div class="org" data-r aria-label="An organization chart: CEO at the top, functional leads below, teams beneath them.">
+      <div class="org-rows">
+        <div class="org-row">
+          <div class="org-node lead"><b>Chief Executive</b><span>co-founder</span></div>
+        </div>
+        <div class="org-row">
+          <div class="org-node"><b>Research</b><span>frontier models</span></div>
+          <div class="org-node"><b>Engineering</b><span>product &amp; infra</span></div>
+          <div class="org-node"><b>Go-to-market</b><span>enterprise</span></div>
+        </div>
+        <div class="org-row">
+          <div class="org-node"><b>Safety</b><span>alignment</span></div>
+          <div class="org-node"><b>API platform</b><span>developer tools</span></div>
+          <div class="org-node"><b>Sales</b><span>Fortune 500</span></div>
+          <div class="org-node"><b>Partnerships</b><span>cloud &amp; compute</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ 10 · BEYOND THE NUMBERS === -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker" data-r>Beyond the numbers</p>
+    <h2 class="h2" data-r>Understand what the company is building — and where it came from.</h2>
+    <p class="lede" data-r>
+      Numbers tell you where a company is. Product, people and history help explain
+      <strong>why</strong>. Each is a different lens on the same company.
+    </p>
+    <div class="lenses">
+      <div class="lens" data-r>
+        <p class="pane-label"><i aria-hidden="true"></i> Mission &amp; Governance</p>
+        <p>Stated mission, ownership structure and how decisions get made.</p>
+        <span class="ln"></span><span class="ln short"></span>
+      </div>
+      <div class="lens" data-r>
+        <p class="pane-label"><i aria-hidden="true"></i> Products &amp; Roadmap</p>
+        <div class="rmrow done"><i aria-hidden="true"></i>Claude — flagship assistant</div>
+        <div class="rmrow done"><i aria-hidden="true"></i>API platform</div>
+        <div class="rmrow"><i aria-hidden="true"></i>Agentic coding tools</div>
+      </div>
+      <div class="lens" data-r>
+        <p class="pane-label"><i aria-hidden="true"></i> History</p>
+        <div class="rmrow"><span class="hyear">2021</span>Founded by former OpenAI researchers</div>
+        <div class="rmrow"><span class="hyear">2023</span>Claude launches publicly</div>
+        <div class="rmrow"><span class="hyear">2026</span>Series H at $965B</div>
+      </div>
+      <div class="lens" data-r>
+        <p class="pane-label"><i aria-hidden="true"></i> Live Landing Page</p>
+        <p>The company’s own site, embedded — positioning in its own words, checked against the data.</p>
+        <span class="ln"></span><span class="ln short"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== 11 · COMPARE === -->
 <section>
   <div class="wrap">
     <p class="kicker" data-r>Comparison</p>
-    <h2 class="h2" data-r>Stop switching between tabs.</h2>
+    <h2 class="h2" data-r>Compare the companies that matter.</h2>
     <p class="lede" data-r>
-      Select companies in the deck and compare them side-by-side on the signals that matter —
+      Select companies in the deck and compare them side-by-side using consistent metrics —
       then ask a grounded question about exactly those companies.
     </p>
     <div class="compare-grid">
@@ -971,7 +1209,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
 <section id="ask" style="background:var(--surface);border-block:1px solid var(--border)">
   <div class="wrap">
     <p class="kicker" data-r>Ask</p>
-    <h2 class="h2" data-r>Keep researching the same market.</h2>
+    <h2 class="h2" data-r>Your first question doesn’t have to be your last.</h2>
     <p class="lede" data-r>
       Your deck becomes the starting point for the next question. Answers come from the deck’s
       stored research plus a fresh Google Search — <strong>never from model memory</strong>.
@@ -1145,11 +1383,11 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
       <div class="vs-col gen" data-r>
         <h3>General AI chat</h3>
         <ul class="vs-list">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>One long conversation</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>Research gets buried in messages</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>Hard to compare companies</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>Start over for every question</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>Information isn’t structured around a market</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>Research gets buried in conversations</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>Company information is inconsistent</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>Comparisons require manual work</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>Research must be reconstructed for every new question</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>Final deliverables require additional work</li>
         </ul>
         <div class="vs-visual" aria-hidden="true">
           <div class="ghost-msg w1"></div><div class="ghost-msg w2"></div>
@@ -1159,11 +1397,12 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
       <div class="vs-col smk" data-r>
         <h3>Stratemark</h3>
         <ul class="vs-list">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Structured market deck</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Companies side-by-side</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Structured market workspace</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Metrics, sources and fact-checking</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Consistent company intelligence</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Research stays organized</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Continue researching the same deck</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Live intelligence and comparison</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Follow-up research in the same deck</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Report generation and export</li>
         </ul>
         <div class="vs-visual">
           <div class="mini-rows">
@@ -1263,6 +1502,10 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding-bloc
         <details>
           <summary>Who is Stratemark for?</summary>
           <p>Anyone who needs to understand a market: founders sizing an opportunity, teams doing competitive research, investors building an initial landscape, strategists looking for gaps.</p>
+        </details>
+        <details>
+          <summary>Can I turn the research into a report?</summary>
+          <p>Yes. A finished deck generates a market report — executive summary, company table, tiers and sources — and exports as <strong>PowerPoint (.pptx)</strong>, <strong>PDF</strong> or <strong>Markdown</strong>.</p>
         </details>
         <details>
           <summary>How is it different from ChatGPT or Perplexity?</summary>
@@ -1427,6 +1670,18 @@ document.documentElement.classList.add('js');
     b.setAttribute('aria-pressed','true');
     d.innerHTML='<span><strong>'+b.dataset.title+'.</strong> '+b.dataset.blurb+'</span>';
   });
+})();
+
+/* metrics cells reveal progressively */
+(function(){
+  var cells=[].slice.call(document.querySelectorAll('.mcell')); if(!cells.length) return;
+  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){
+    cells.forEach(function(c){c.classList.add('in')});return}
+  var io=new IntersectionObserver(function(en){
+    if(!en[0].isIntersecting) return; io.disconnect();
+    cells.forEach(function(c,i){setTimeout(function(){c.classList.add('in')},110*i)});
+  },{threshold:.2});
+  io.observe(cells[0]);
 })();
 
 /* market map chips */
