@@ -652,3 +652,24 @@ no overflow 320→1920 · no-JS readable.
 
 Verified: 21st review 0/0/0 · contrast 487 nodes 0 failures · no overflow 320→1920 ·
 pill clip verified fixed programmatically (pill bottom < window bottom, done-state bar 0px).
+
+---
+
+## Addendum — 15 Aug, V8: client review round 3
+
+1. **Capability index strip removed** — it read as floating text, not a designed element.
+2. **Team & Org rebuilt:** new group photograph (five-person working session, teal folder on
+   the table) and the org chart is now a **connected tree** — CEO → three functional leads →
+   teams, with real reporting lines drawn in CSS (rails + drop lines), collapsing gracefully
+   on mobile.
+3. **AI Research chat redesigned as a product panel:** header bar with S-mark + "AI Research"
+   title and a "Grounded · deck + live search" badge, avatar chips on AI messages, deep-teal
+   user bubbles, block citations, and a suggestion-chip row ("What changed recently?" …).
+4. **Compare selection redone:** the floating overflow check circles are gone. Selection now
+   lives inside the card — product-style rounded-square checkbox that fills teal when picked,
+   with the ring on the card.
+5. **Report image swapped:** the reading figure replaced with a market-data trading display —
+   ascending teal chart over columns of figures. Caption: "The market, quantified."
+
+Verified: 21st review 0/0/0 · contrast 476 nodes 0 failures · no overflow 320→1440 ·
+no-JS readable.
