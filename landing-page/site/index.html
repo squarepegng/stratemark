@@ -343,18 +343,80 @@ section{position:relative;padding-block:var(--band)}
 
 /* community */
 
-/* log typography */
-.log{flex:1;margin-top:var(--s-6);font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;line-height:1.85;color:var(--on-ink-muted);min-height:196px}
-.logline{display:flex;gap:var(--s-3);align-items:baseline}
-.logline .t{color:rgba(255,255,255,.3);flex:none}
-.logline .b{min-width:0}
-.tag{display:inline-block;padding:1px 6px;border-radius:5px;margin-right:6px;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase}
-.tag-v{background:rgba(22,163,106,.2);color:var(--ok-on-ink)}
-.tag-e{background:rgba(224,163,42,.2);color:var(--est-on-ink)}
-.tag-u{background:rgba(255,255,255,.1);color:var(--unk-on-ink)}
-.src{color:#7DD3FC}
-.caret{display:inline-block;width:7px;height:13px;background:var(--ok-on-ink);vertical-align:-2px;animation:blink 1s steps(2) infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+/* ---- the deck-creation chat, recreated from the product (NewDeckPage) ---- */
+.appwin{
+  /* the product's light mode, verbatim: mint canvas, white surface, teal accent */
+  --p-bg:#F4F8F7; --p-surface:#FFFFFF; --p-surface2:#F7FAF9; --p-border:#DCE8E5;
+  --p-content:#171A19; --p-muted:#68716F; --p-faint:#A3ACA9; --p-primary:#0F766E;
+  margin-top:var(--s-6);border-radius:var(--r-lg);overflow:hidden;
+  background:var(--p-bg);color:var(--p-content);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.7);
+  font-family:"Google Sans Flex",sans-serif;font-size:14px;line-height:1.5;
+  display:flex;flex-direction:column;min-height:430px;
+}
+.aw-body{flex:1;padding:26px 26px 10px;display:flex;flex-direction:column;gap:18px;max-width:640px;width:100%;margin-inline:auto}
+.aw-user{align-self:flex-end;text-align:right;max-width:85%}
+.aw-user .t{font-size:11px;color:var(--p-muted);margin-bottom:4px}
+.aw-user .bub{
+  display:inline-block;background:rgba(23,26,25,.05);color:var(--p-content);
+  padding:10px 16px;border-radius:16px 16px 6px 16px;font-size:14px;text-align:left;
+}
+.aw-ai .mk-row{display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.aw-ai .mk-row svg,.aw-pill .mk svg{width:15px;height:15px;display:block}
+.aw-ai .mk-row b{font-family:Parkinsans,sans-serif;font-weight:600;font-size:12px;color:var(--p-muted)}
+/* the product's glow-border: rotating teal conic ring behind an inset surface */
+.aw-card{position:relative;isolation:isolate;border-radius:12px;overflow:hidden;padding:16px}
+.aw-card.glow::before{
+  content:"";position:absolute;left:50%;top:50%;width:220%;padding-bottom:220%;
+  transform:translate(-50%,-50%);z-index:-2;
+  background:conic-gradient(transparent 0%,transparent 25%,rgba(15,118,110,.8) 30%,rgba(28,220,205,.9) 36%,transparent 42%,transparent 100%);
+}
+.js .aw-card.glow::before{animation:spin 3.2s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(1turn)}}
+.aw-card.glow::after{content:"";position:absolute;inset:2px;border-radius:10px;background:var(--p-surface);z-index:-1}
+.aw-card.plain{border:1px solid var(--p-border);background:var(--p-surface)}
+.aw-phase{display:flex;align-items:center;gap:10px;font-size:14px}
+.aw-phase svg{width:16px;height:16px;color:var(--p-muted);flex:none}
+.js .aw-phase svg{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.aw-steps{margin-top:12px;border-top:1px solid var(--p-border);padding-top:10px}
+.aw-steps .lbl{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--p-muted)}
+.aw-steps .lbl svg{width:11px;height:11px;transform:rotate(90deg)}
+.aw-steps .lines{margin-top:8px;font-size:12px;color:var(--p-muted);display:grid;gap:3px}
+.aw-done p{font-size:14px;color:var(--p-content)}
+.aw-done .row{display:flex;align-items:center;gap:14px;margin-top:12px}
+.aw-done .view{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--p-primary);color:#fff;border-radius:999px;padding:9px 20px;
+  font-size:13px;font-weight:500;
+}
+.aw-done .view svg{width:13px;height:13px}
+.aw-done .again{font-size:13px;color:var(--p-muted)}
+.js .aw-stage{opacity:0;transform:translateY(8px)}
+.js .aw-stage.in{opacity:1;transform:none;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+/* floating input pill, pinned to the window's floor like the product */
+.aw-foot{padding:18px 26px 20px;background:linear-gradient(transparent,var(--p-bg) 40%)}
+.aw-pill{
+  max-width:640px;margin-inline:auto;background:var(--p-surface);
+  border:1px solid var(--p-border);border-radius:16px;padding:12px;
+  box-shadow:0 1px 2px rgba(23,26,25,.05),0 10px 24px -16px rgba(23,26,25,.15);
+}
+.aw-pill .ph{font-size:15px;color:var(--p-muted)}
+.aw-pill .bar{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:10px}
+.aw-pill .left{display:flex;align-items:center;gap:8px;min-width:0}
+.aw-pill .mk{opacity:.4;flex:none}
+.aw-pill .region{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--p-border);border-radius:999px;padding:4px 10px;
+  font-size:12px;font-weight:500;color:var(--p-muted);white-space:nowrap;
+}
+.aw-pill .region svg{width:11px;height:11px}
+.aw-pill .right{display:flex;align-items:center;gap:6px;flex:none}
+.aw-pill .mic{display:grid;place-items:center;width:30px;height:30px;border-radius:999px;color:var(--p-muted)}
+.aw-pill .mic svg{width:15px;height:15px}
+.aw-pill .go{display:grid;place-items:center;width:32px;height:32px;border-radius:999px;background:var(--p-primary);color:#fff}
+.aw-pill .go svg{width:15px;height:15px}
 
 /* confidence chips inside a tile */
 
@@ -1203,18 +1265,53 @@ footer{border-top:1px solid var(--line);padding-block:var(--s-16) var(--s-8);bac
           <p>~3 minutes of live, cited Google research. Every company found, every figure sourced — and every gap it refuses to fill.</p>
         </div>
       </div>
-      <div class="log" id="log" role="img"
-           aria-label="An illustration of the live research log: each figure found is tagged verified, estimated or unknown, with its source named.">
-        <div class="logline"><span class="t">00:04</span><span class="b">Resolving market — <span class="src">frontier AI labs, global</span></span></div>
-        <div class="logline"><span class="t">00:11</span><span class="b">Found 10 companies · scoring maturity tiers</span></div>
-        <div class="logline"><span class="t">00:26</span><span class="b"><span class="tag tag-v">verified</span>Anthropic valuation <b>$965B</b> — <span class="src">Series H announcement</span></span></div>
-        <div class="logline"><span class="t">00:39</span><span class="b"><span class="tag tag-e">estimated</span>OpenAI ARR <b>$25B</b> — derived from reported run-rate</span></div>
-        <div class="logline"><span class="t">00:52</span><span class="b"><span class="tag tag-u">unknown</span>OpenAI market share — <b>no credible public figure</b>, left blank</span></div>
-        <div class="logline"><span class="t">01:08</span><span class="b"><span class="tag tag-v">verified</span>NVIDIA FY revenue <b>$216B</b> — <span class="src">Q4 earnings release</span></span></div>
-        <div class="logline"><span class="t">01:22</span><span class="b"><span class="tag tag-e">estimated</span>NVIDIA AI GPU share <b>~80–88%</b> — range across three analysts</span></div>
-        <div class="logline"><span class="t">01:35</span><span class="b"><span class="tag tag-v">verified</span>CoreWeave FY25 revenue <b>$5.1B</b> — <span class="src">10-K filing</span></span></div>
-        <div class="logline"><span class="t">01:51</span><span class="b"><span class="tag tag-u">unknown</span>Scale AI headcount — <b>not disclosed</b>, left blank</span></div>
-        <div class="logline"><span class="t">02:47</span><span class="b">Deck ready — <span class="src">10 cards · 34 sources · 9 honest gaps</span></span></div>
+      <div class="appwin" id="appwin" role="img"
+           aria-label="The Stratemark app: a user asks for frontier AI labs, Stratemark researches the market and returns a finished deck.">
+        <div class="aw-body">
+          <div class="aw-user">
+            <div class="t">2:47 PM</div>
+            <span class="bub">Frontier AI labs — Global</span>
+          </div>
+          <div class="aw-ai">
+            <div class="mk-row"><svg width="15" height="15" aria-hidden="true" width='136' height='136' viewBox='0 0 136 136' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M68.3262 23.6562C69.1088 23.6525 69.8888 23.6628 70.3213 23.6641L77.6377 23.6914C80.4851 23.7026 92.1595 24.0311 96.0928 24.1436C96.6449 24.1593 97.0265 24.4853 97.0977 24.8896C97.2606 25.8172 97.2414 26.9168 96.6064 27.6807C85.125 41.4929 73.4071 55.0896 61.8076 68.8193C61.3698 69.3375 60.4883 70.1341 59.5273 70.9443C58.5875 71.7367 57.6124 72.5084 57.001 72.9814C53.6044 75.3205 49.17 77.1344 45.1133 77.6426C44.1311 77.7655 40.8278 77.9804 37.6055 78.0332C35.9967 78.0595 34.4261 78.0453 33.1885 77.9609C32.5684 77.9187 32.048 77.859 31.6543 77.7832C31.4574 77.7453 31.305 77.7057 31.1943 77.667C31.0747 77.6251 31.0442 77.5987 31.0557 77.6084C31.0256 77.583 30.9368 77.4479 30.8652 77.1074C30.8011 76.8023 30.7764 76.4697 30.7559 76.1953C30.5418 73.3239 30.7499 70.4213 30.7373 67.4414C30.7098 60.9478 30.9798 55.6007 32.3477 50.6172C33.7111 45.6499 36.1757 41.0096 40.5898 35.9609C46.9688 28.665 56.8041 24.4054 66.4189 23.7295L66.4404 23.7285L66.4629 23.7256C66.7987 23.679 67.528 23.6601 68.3262 23.6562Z' fill='url(#paint0_linear_2140_16844)' stroke='#18BFB2' stroke-width='1.31864'/><path d='M67.0801 111.562C66.2974 111.566 65.5174 111.556 65.085 111.555L57.7686 111.527C54.9211 111.516 43.2467 111.188 39.3135 111.075C38.7613 111.059 38.3798 110.733 38.3086 110.329C38.1456 109.402 38.1649 108.302 38.7998 107.538C50.2812 93.7259 61.9991 80.1291 73.5986 66.3994C74.0364 65.8812 74.9179 65.0846 75.8789 64.2744C76.8187 63.482 77.7939 62.7103 78.4053 62.2373C81.8018 59.8983 86.2362 58.0843 90.293 57.5762C91.2752 57.4533 94.5785 57.2383 97.8008 57.1855C99.4095 57.1592 100.98 57.1734 102.218 57.2578C102.838 57.3001 103.358 57.3598 103.752 57.4355C103.949 57.4735 104.101 57.513 104.212 57.5518C104.332 57.5936 104.362 57.62 104.351 57.6104C104.381 57.6358 104.469 57.7708 104.541 58.1113C104.605 58.4164 104.63 58.749 104.65 59.0234C104.864 61.8948 104.656 64.7974 104.669 67.7773C104.696 74.2709 104.426 79.6181 103.059 84.6016C101.695 89.5689 99.2306 94.2092 94.8164 99.2578C88.4374 106.554 78.6021 110.813 68.9873 111.489L68.9658 111.49L68.9434 111.493C68.6075 111.54 67.8783 111.559 67.0801 111.562Z' fill='url(#paint1_linear_2140_16844)' stroke='#18BFB2' stroke-width='1.31864'/><defs><linearGradient id='paint0_linear_2140_16844' x1='66.7762' y1='38.5006' x2='65.3996' y2='78.7549' gradientUnits='userSpaceOnUse'><stop stop-color='#0F766E'/><stop offset='1' stop-color='#1CDCCD'/></linearGradient><linearGradient id='paint1_linear_2140_16844' x1='68.6301' y1='96.7181' x2='70.0067' y2='56.4639' gradientUnits='userSpaceOnUse'><stop stop-color='#0F766E'/><stop offset='1' stop-color='#1CDCCD'/></linearGradient></defs></svg><b>Stratemark</b></div>
+            <div class="aw-card glow aw-stage" id="aw-running">
+              <div class="aw-phase">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <span id="aw-phase-label">Discovering companies…</span>
+              </div>
+              <div class="aw-steps">
+                <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><span id="aw-count">23 steps completed</span></span>
+                <div class="lines">
+                  <div>Found Anthropic — verifying Series H valuation</div>
+                  <div>Found NVIDIA — FY revenue from Q4 earnings release</div>
+                  <div>OpenAI market share — no credible public figure, leaving blank</div>
+                </div>
+              </div>
+            </div>
+            <div class="aw-card plain aw-done aw-stage" id="aw-done" hidden>
+              <p>Your deck is ready — 10 cards built, metrics sourced, tiers scored.</p>
+              <div class="row">
+                <span class="view">View your deck <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                <span class="again">New research</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="aw-foot">
+          <div class="aw-pill">
+            <div class="ph">Describe a market…</div>
+            <div class="bar">
+              <div class="left">
+                <span class="mk"><svg width="15" height="15" aria-hidden="true" width='136' height='136' viewBox='0 0 136 136' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M68.3262 23.6562C69.1088 23.6525 69.8888 23.6628 70.3213 23.6641L77.6377 23.6914C80.4851 23.7026 92.1595 24.0311 96.0928 24.1436C96.6449 24.1593 97.0265 24.4853 97.0977 24.8896C97.2606 25.8172 97.2414 26.9168 96.6064 27.6807C85.125 41.4929 73.4071 55.0896 61.8076 68.8193C61.3698 69.3375 60.4883 70.1341 59.5273 70.9443C58.5875 71.7367 57.6124 72.5084 57.001 72.9814C53.6044 75.3205 49.17 77.1344 45.1133 77.6426C44.1311 77.7655 40.8278 77.9804 37.6055 78.0332C35.9967 78.0595 34.4261 78.0453 33.1885 77.9609C32.5684 77.9187 32.048 77.859 31.6543 77.7832C31.4574 77.7453 31.305 77.7057 31.1943 77.667C31.0747 77.6251 31.0442 77.5987 31.0557 77.6084C31.0256 77.583 30.9368 77.4479 30.8652 77.1074C30.8011 76.8023 30.7764 76.4697 30.7559 76.1953C30.5418 73.3239 30.7499 70.4213 30.7373 67.4414C30.7098 60.9478 30.9798 55.6007 32.3477 50.6172C33.7111 45.6499 36.1757 41.0096 40.5898 35.9609C46.9688 28.665 56.8041 24.4054 66.4189 23.7295L66.4404 23.7285L66.4629 23.7256C66.7987 23.679 67.528 23.6601 68.3262 23.6562Z' fill='url(#paint0_linear_2140_16844)' stroke='#18BFB2' stroke-width='1.31864'/><path d='M67.0801 111.562C66.2974 111.566 65.5174 111.556 65.085 111.555L57.7686 111.527C54.9211 111.516 43.2467 111.188 39.3135 111.075C38.7613 111.059 38.3798 110.733 38.3086 110.329C38.1456 109.402 38.1649 108.302 38.7998 107.538C50.2812 93.7259 61.9991 80.1291 73.5986 66.3994C74.0364 65.8812 74.9179 65.0846 75.8789 64.2744C76.8187 63.482 77.7939 62.7103 78.4053 62.2373C81.8018 59.8983 86.2362 58.0843 90.293 57.5762C91.2752 57.4533 94.5785 57.2383 97.8008 57.1855C99.4095 57.1592 100.98 57.1734 102.218 57.2578C102.838 57.3001 103.358 57.3598 103.752 57.4355C103.949 57.4735 104.101 57.513 104.212 57.5518C104.332 57.5936 104.362 57.62 104.351 57.6104C104.381 57.6358 104.469 57.7708 104.541 58.1113C104.605 58.4164 104.63 58.749 104.65 59.0234C104.864 61.8948 104.656 64.7974 104.669 67.7773C104.696 74.2709 104.426 79.6181 103.059 84.6016C101.695 89.5689 99.2306 94.2092 94.8164 99.2578C88.4374 106.554 78.6021 110.813 68.9873 111.489L68.9658 111.49L68.9434 111.493C68.6075 111.54 67.8783 111.559 67.0801 111.562Z' fill='url(#paint1_linear_2140_16844)' stroke='#18BFB2' stroke-width='1.31864'/><defs><linearGradient id='paint0_linear_2140_16844' x1='66.7762' y1='38.5006' x2='65.3996' y2='78.7549' gradientUnits='userSpaceOnUse'><stop stop-color='#0F766E'/><stop offset='1' stop-color='#1CDCCD'/></linearGradient><linearGradient id='paint1_linear_2140_16844' x1='68.6301' y1='96.7181' x2='70.0067' y2='56.4639' gradientUnits='userSpaceOnUse'><stop stop-color='#0F766E'/><stop offset='1' stop-color='#1CDCCD'/></linearGradient></defs></svg></span>
+                <span class="region"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>Region</span>
+              </div>
+              <div class="right">
+                <span class="mic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1M12 18v4"/></svg></span>
+                <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1555,24 +1652,39 @@ document.documentElement.classList.add('js');
   s.addEventListener('input',p); p();
 })();
 
-/* the live research log — replays the product's one honest loop */
+/* the deck-creation chat — phases cycle like the product, then the deck lands */
 (function(){
-  var el=document.getElementById('log'); if(!el) return;
-  var rows=[].slice.call(el.querySelectorAll('.logline')).map(function(n){return n.outerHTML});
-  if(!rows.length) return;
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var draw=function(n,c){ el.innerHTML=rows.slice(0,n).join('')+(c?'<div class="logline"><span class="t">&nbsp;</span><span class="caret"></span></div>':'') };
-  var i=0,timer=null,live=false;
-  var tick=function(){
-    i++; draw(Math.min(i,rows.length), i<rows.length);
-    if(i<rows.length){ timer=setTimeout(tick,560+Math.random()*460) }
-    else { timer=setTimeout(function(){ i=0; draw(0,true); timer=setTimeout(tick,850) },4600) }
+  var win=document.getElementById('appwin'); if(!win) return;
+  var run=document.getElementById('aw-running'),done=document.getElementById('aw-done');
+  var label=document.getElementById('aw-phase-label'),count=document.getElementById('aw-count');
+  var PHASES=['Brainstorming…','Scanning the market…','Discovering companies…','Analyzing metrics…','Scoring tiers…'];
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finish=function(){
+    run.hidden=true; done.hidden=false; done.classList.add('in');
   };
+  if(reduced||!('IntersectionObserver' in window)){
+    run.classList.add('in'); finish(); return;
+  }
+  var started=false;
   var io=new IntersectionObserver(function(en){
-    if(en[0].isIntersecting){ if(!live){live=true;draw(0,true);timer=setTimeout(tick,450)} }
-    else { clearTimeout(timer); live=false; i=0; draw(rows.length,false) }
-  },{threshold:.2});
-  io.observe(el);
+    if(!en[0].isIntersecting||started) return;
+    started=true; io.disconnect();
+    run.classList.add('in');
+    var i=0,steps=4;
+    var t=setInterval(function(){
+      i++;
+      if(i<PHASES.length){
+        label.textContent=PHASES[i];
+        steps+=5+Math.round(Math.random()*4);
+        count.textContent=steps+' steps completed';
+      } else {
+        clearInterval(t);
+        setTimeout(finish,700);
+      }
+    },1500);
+    label.textContent=PHASES[0]; count.textContent='4 steps completed';
+  },{threshold:.3});
+  io.observe(win);
 })();
 </script>
 </body>
