@@ -569,3 +569,34 @@ rows highlight; report window raises its export buttons. No bouncing, no glow.
 
 Verified: 21st review --strict 0/0/0 · contrast 582 nodes 0 failures · no overflow 320→1920 ·
 no-JS readable · hover affordances confirmed in a real browser.
+
+---
+
+## Addendum — 15 Aug, V5: visual direction upgrade (teal + coral, three modes)
+
+Upgrade pass on the V4 page — story and IA unchanged, visual language reworked.
+
+**New palette.** Primary teal retuned to #087F6A / #075B50; canvas to off-white #F8F9F6 with
+mint #EAF6F2 surface bands; near-black #17201E. New warm register used selectively: coral
+#E8755D (display only — fails AA as text), deep coral #B3402A (text on peach), peach #FBE9E3.
+
+**Three visual modes.**
+- *Product* (white/mint): research, landscape, company intelligence, evidence, comparison, ask, report.
+- *Intelligence* (dark teal #075B50): the Metrics chapter — oversized 76px chart icon, an
+  editorial big-numbers row ($47B / $965B / +34% in coral / ~5,000) over the white metrics panel.
+  Evidence moved to light mode so darks stay strategic (hero, metrics, final CTA).
+- *Human/editorial* (peach): new "Research doesn't happen in isolation." section — commissioned
+  editorial photograph (analyst studying a printed market landscape; coral sweater, teal
+  notebook — shot to the brand palette) with floating product chips (ARR metric, Series H
+  signal) and a coral Question→Research→Intelligence→Decision flow.
+
+**Icon + typography compositions** for the three biggest moments: Metrics (chart), Live Intel
+(signal), Report (document) at 76px beside the headline instead of 32px squares.
+
+**Fixes en route:** white metrics panel inherited the dark section's text colour; light kickers
+were 4.46:1 on mint (now deep teal); dark kickers were 3.4:1 (now bright mint); an inline
+dark-era colour on the evidence citation note survived the mode switch at 1.41:1 (stripped).
+
+Verified: 21st review --strict 0/0/0 · contrast 605 nodes 0 failures · no overflow 320→1920 ·
+no-JS readable · float chips, big numbers and hover states confirmed in a real browser.
+Photography ≈ one section (~10% of the page), product UI still dominant.
